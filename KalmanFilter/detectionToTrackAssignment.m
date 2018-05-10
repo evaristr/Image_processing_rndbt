@@ -1,5 +1,5 @@
     function [assignments, unassignedTracks, unassignedDetections] = ...
-            detectionToTrackAssignment()
+            detectionToTrackAssignment(tracks,bboxes, option)
 
         % Compute the overlap ratio between the predicted boxes and the
         % detected boxes, and compute the cost of assigning each detection

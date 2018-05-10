@@ -1,4 +1,4 @@
-    function predictNewLocationsOfTracks()
+    function predictNewLocationsOfTracks(tracks)
         for i = 1:length(tracks)
             % Get the last bounding box on this track.
             bbox = tracks(i).bboxes(end, :);

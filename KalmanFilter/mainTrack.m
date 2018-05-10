@@ -15,7 +15,7 @@ tracks = initializeTracks();
 nextId = 1;
 
 % Set the global parameters.
-option.ROI                  = [40 95 400 140];  % A rectangle [x, y, w, h] that limits the processing area to ground locations.
+option.ROI                  = roipoly;  % A rectangle [x, y, w, h] that limits the processing area to ground locations.
 option.scThresh             = 0.3;              % A threshold to control the tolerance of error in estimating the scale of a detected pedestrian.
 option.gatingThresh         = 0.9;              % A threshold to reject a candidate match between a detection and a track.
 option.gatingCost           = 100;              % A large value for the assignment cost matrix that enforces the rejection of a candidate match.
@@ -32,17 +32,17 @@ for fNum = 1:stopFrame
 
     [centroids, bboxes, scores] = detectPeople(frame, detector,option,obj);
 
-    predictNewLocationsOfTracks();
+    predictNewLocationsOfTracks(tracks);
 
     [assignments, unassignedTracks, unassignedDetections] = ...
-        detectionToTrackAssignment();
+        detectionToTrackAssignment(tracks, bboxes, option);
 
-    updateAssignedTracks();
-    updateUnassignedTracks();
-    deleteLostTracks();
-    createNewTracks();
+    updateAssignedTracks(assignments);
+    updateUnassignedTracks(unassignedTracks);
+    deleteLostTracks(tracks);
+    createNewTracks(centroids, unassignedDetections, bboxes,scores,nextId,tracks);
 
-    displayTrackingResults();
+    displayTrackingResults(frame,tracks,option,obj);
 
     % Exit the loop if the video player figure is closed.
     if ~isOpen(obj.videoPlayer)

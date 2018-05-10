@@ -1,4 +1,4 @@
-    function displayTrackingResults()
+    function displayTrackingResults(frame,tracks,option,obj)
 
         displayRatio = 4/3;
         frame = imresize(frame, displayRatio);

@@ -1,4 +1,4 @@
-    function updateUnassignedTracks()
+    function updateUnassignedTracks(unassignedTracks)
         for i = 1:length(unassignedTracks)
             idx = unassignedTracks(i);
             tracks(idx).age = tracks(idx).age + 1;

@@ -1,4 +1,4 @@
-    function createNewTracks()
+    function createNewTracks(centroids, unassignedDetections, bboxes,scores,nextId,tracks)
         unassignedCentroids = centroids(unassignedDetections, :);
         unassignedBboxes = bboxes(unassignedDetections, :);
         unassignedScores = scores(unassignedDetections);

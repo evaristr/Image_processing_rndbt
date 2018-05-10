@@ -1,4 +1,4 @@
-    function deleteLostTracks()
+    function deleteLostTracks(tracks)
         if isempty(tracks)
             return;
         end
